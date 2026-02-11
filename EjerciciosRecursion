@@ -1,0 +1,127 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNbQFXaKuGY0SXMC8h0rrty",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/CrispeX/EstructuraDeDatos/blob/main/EjerciciosRecursion\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "q6R_qqDnb2TB",
+        "outputId": "4473624b-bf5f-402c-c003-265f5edbee3a"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Proceso finalizado:1\n"
+          ]
+        }
+      ],
+      "source": [
+        "def abriruñeca(nummuñe):\n",
+        "  if nummuñe == 1:\n",
+        "    return print(\"Proceso finalizado:\" + str(nummuñe))\n",
+        "  abriruñeca(nummuñe - 1)\n",
+        "  print(\"Proceso en muñeca:\"+str(numnuñe))\n",
+        "abriruñeca(1)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def factorial(n):\n",
+        "  if n == 0:\n",
+        "    return 1\n",
+        "  return n*factorial(n-1)\n",
+        "factorial(5)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ohY8xxb9cggj",
+        "outputId": "613cc52f-7db9-4871-d81f-accd879dc8be"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "120"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 3
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def factorial(n, resultado=1):\n",
+        "  if n == 0:\n",
+        "    return resultado\n",
+        "  return factorial(n-1, resultado*n)\n",
+        "factorial(5)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "g0aePNROfg2R",
+        "outputId": "8539f272-5bf0-483c-8009-01d91ee62b47"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "120"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 5
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "lPRHAEHhhucA"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
