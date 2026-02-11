@@ -1,4 +1,4 @@
-# Tecnica de programacion en la que una funcion hace mas de una llamada a si misma durante una ejecucion.
+# Tecnica de programacion en la que una funcion hace mas de una llamada a si misma durante una ejecucion. #
 Claves de una funcion recursiva:
 -Los pasos a ejecutar son siempre los mismos, con difernetes parametros de entrada
 -En algun momento debe dejar de ejecutarse
@@ -10,3 +10,14 @@ Claves de una funcion recursiva:
 # Recursion
 -Provee una solucion elegante y poderosa para ejecutar tareas repetitivas
 -Ayuda a dividi problemas grandes en problemas mas pequeños
+
+Ejemplos:
+/////////////////////////////////////////////////////////////////
+def abriruñeca(nummuñe):
+  if nummuñe == 1:
+    return print("Proceso finalizado:" + str(nummuñe))
+  abriruñeca(nummuñe - 1)
+  print("Proceso en muñeca:"+str(numnuñe))
+abriruñeca(1)
+/////////////////////////////////////////////////////////////////
+
