@@ -1,0 +1,12 @@
+# Tecnica de programacion en la que una funcion hace mas de una llamada a si misma durante una ejecucion.
+Claves de una funcion recursiva:
+-Los pasos a ejecutar son siempre los mismos, con difernetes parametros de entrada
+-En algun momento debe dejar de ejecutarse
+
+# Claves en las funciones recursivas:
+-Caso base: condicion cuando la funcion dejara de llamarse a si misma
+-Caso recursivo: La funcion vuelve a llamarse a si misma
+
+# Recursion
+-Provee una solucion elegante y poderosa para ejecutar tareas repetitivas
+-Ayuda a dividi problemas grandes en problemas mas pequeños
