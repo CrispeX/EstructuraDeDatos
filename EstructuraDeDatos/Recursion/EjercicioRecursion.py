@@ -9,7 +9,6 @@ def abriruñeca(nummuñe):
 abriruñeca(1)
 
 
-
 def factorial(n):
   if n == 0:
     return 1
@@ -22,5 +21,17 @@ def digitos(n:int):
   if n == 0:
     return 0
   return 1+digitos(n//10)
-
 digitos(-1)
+
+
+def reversed_word(p):
+  if len(p) == 1:
+    return p
+  return p[-1] + reversed_word(p[:-1])
+reversed_word("mesa")
+
+p = "mesa"
+print(p[-1])
+print(p[:-1])
+print(p[::-1])
+
