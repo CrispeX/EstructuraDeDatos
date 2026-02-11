@@ -11,13 +11,3 @@ Claves de una funcion recursiva:
 -Provee una solucion elegante y poderosa para ejecutar tareas repetitivas
 -Ayuda a dividi problemas grandes en problemas mas pequeños
 
-Ejemplos:
-/////////////////////////////////////////////////////////////////
-def abriruñeca(nummuñe):
-  if nummuñe == 1:
-    return print("Proceso finalizado:" + str(nummuñe))
-  abriruñeca(nummuñe - 1)
-  print("Proceso en muñeca:"+str(numnuñe))
-abriruñeca(1)
-/////////////////////////////////////////////////////////////////
-
