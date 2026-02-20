@@ -142,3 +142,27 @@ v3 = 8
 print(f"El valor {v1} esta en la posicion {busqueda_binaria(l, v1)}")
 print(f"El valor {v2} esta en la posicion {busqueda_binaria(l, v2)}")
 print(f"El valor {v3} esta en la posicion {busqueda_binaria(l, v3)}")"""
+
+#Serie fibonacci
+
+"""def fibonacci(n):
+  
+  if n == 0:
+    return n
+  if n == 1:
+    return n
+  
+  return fibonacci(n-1) + fibonacci(n-2)
+
+print(fibonacci(50))"""
+
+"""def good_fibonacci(n:int)->int:
+  
+  if n <= 1:
+    return (n,0)
+  else:
+    (a,b) = good_fibonacci(n-1)
+    return (a+b, a)
+
+print(good_fibonacci(50))"""
+
