@@ -1,13 +1,13 @@
 #Ejemplos:
 
 
-def abriruñeca(nummuñe):
+"""def abriruñeca(nummuñe):
   if nummuñe == 1:
     return print("Proceso finalizado:" + str(nummuñe))
   abriruñeca(nummuñe - 1)
   print("Proceso en muñeca:"+str(numnuñe))
 abriruñeca(1)
-
+"""
 
 def factorial(n):
   if n == 0:
