@@ -50,10 +50,49 @@ class LinkedList:
     def size(self):
         return self.__size
     
+    def __iter__(self):
+        current_node = self.__head
+        while current_node is not None:
+            yield current_node
+            current_node = current_node.next
 
+    def __str__(self):
+        result = [str(node) for node in self]
+        return ' --> '.join(result)
+    
+    def prepend(self, new_value):
+        new_node = Node(new_value)
 
+        if self.__head is None:
+            self.__head = new_node
+            self.__tail = new_node
 
+            
+        else:
+            new_node.next = self.__head
+            self.__head = new_node
 
+        self.__size += 1
+
+        def append(self, new_value):
+            new_node = Node(new_value)
+
+            if self.__head is None:
+                self.__head = new_node
+                self.__tail = new_node
+
+                
+            else:
+                self.__tail.next = new_node
+                self.__tail = new_node
+
+            self.__size += 1
+
+customLL = LinkedList()
+customLL.prepend(50)
+print("Despues del primer prepend", customLL)
+print("customLL.head --> ", customLL.head)
+print("customLL.tail --> ", customLL.tail)
 
 
 
