@@ -1,11 +1,11 @@
 #Ejemplos:
 
 
-"""def abriruñeca(nummuñe):
+def abriruñeca(nummuñe):
   if nummuñe == 1:
-    return print("Proceso finalizado:" + str(nummuñe))
+    return print(Proceso finalizado: + str(nummuñe))
   abriruñeca(nummuñe - 1)
-  print("Proceso en muñeca:"+str(numnuñe))
+  print(Proceso en muñeca:+str(numnuñe))
 abriruñeca(1)
 
 
@@ -17,7 +17,7 @@ factorial(5)
 
 
 def digitos(n:int):
-  assert isinstance(n, int) and n>=0, "Error n debe ser un entero postivo"
+  assert isinstance(n, int) and n>=0, Error n debe ser un entero postivo
   if n == 0:
     return 0
   return 1+digitos(n//10)
@@ -28,9 +28,9 @@ def reversed_word(p):
   if len(p) == 1:
     return p
   return p[-1] + reversed_word(p[:-1])
-reversed_word("mesa")
+reversed_word(mesa)
 
-p = "mesa"
+p = mesa
 print(p[-1])
 print(p[:-1])
 print(p[::-1])
@@ -39,23 +39,23 @@ def reversed_word(p, index = 0):
   if len(p) == 1:
     return p
   return p[-1] + reversed_word(p[:-1])
-reversed_word("mesa")
+reversed_word(mesa)
 
-p = "mesa"
+p = mesa
 print(p[-1])
 print(p[:-1])
 print(p[::-1])
 
-def reversed_word3(p, index = 0, pr = ""):
+def reversed_word3(p, index = 0, pr = ):
   if index == len(p):
     return pr
   return reversed_word3(p, index + 1, p[index]+pr) 
-pq = "mesa"
+pq = mesa
 print(reversed_word3(pq))
 
-"""
+
 #Implemente una funcion recursiva que valide si una palabra es palindrome, Retornando True o False
-"""def es_palindrome(p, index1=-1, index2=-1):
+def es_palindrome(p, index1=-1, index2=-1):
   if index1 == -1 and index2 == -1:
     index1 = 0
     index2 = len(p)-1
@@ -69,9 +69,9 @@ print(reversed_word3(pq))
   else:
     return False
 
-p1 = "rotor"
-p2 = "mierda"
-p3 = "massam"
+p1 = rotor
+p2 = mierda
+p3 = massam
 print(es_palindrome(p1))
 print(es_palindrome(p2))
 print(es_palindrome(p3))
@@ -84,14 +84,14 @@ def es_palindrome(p):
   else:
     return False
 
-p1 = "rotor"
-p2 = "mierda"
+p1 = rotor
+p2 = mierda
 print(es_palindrome(p1))
-print(es_palindrome(p2))"""
+print(es_palindrome(p2))
 
 #Implemente una funcion recursiva que reverse una lista
 
-"""def reversed_list(l):
+def reversed_list(l):
     if len(l) == 1:
         return l
     return [l[-1]]+reversed_list(l[:-1])
@@ -108,15 +108,15 @@ def reversed_list2(l, index=0, lr=[]):
 l = [4,5,6,7,111]
 print(l)
 print(reversed_list(l))
-"""
+
 
 #Implemente una funcion recursiva
-"""def busqueda_binaria(l, obj, i_low=-1, i_high=1):
+def busqueda_binaria(l, obj, i_low=-1, i_high=1):
     if i_low == -1 and i_high == 1:
         i_low = 0
         i_high = len(l)-1
-    print("i_low", i_low)
-    print("i_hight", i_high)
+    print(i_low, i_low)
+    print(i_hight, i_high)
     i_med = (i_low+i_high)//2
     print(i_low, i_med, i_high)
 
@@ -124,11 +124,11 @@ print(reversed_list(l))
         return i_med
     
     if i_low > i_high:
-      return "El objeto no fue encontrado"
+      return El objeto no fue encontrado
 
     if obj < l[i_med]:
         #busqueda en la primera mitad
-        print("obj < l[i_med]")
+        print(obj < l[i_med])
         return busqueda_binaria(l, obj, i_low, i_med-1)
     elif obj > l[i_med]:
       #busqueda en la segunda mitad
@@ -139,13 +139,13 @@ l = [1,2,3,3,3,5,6,7,8,33,444,222,4,4545]
 v1 = 3
 v2 = 4
 v3 = 8
-print(f"El valor {v1} esta en la posicion {busqueda_binaria(l, v1)}")
-print(f"El valor {v2} esta en la posicion {busqueda_binaria(l, v2)}")
-print(f"El valor {v3} esta en la posicion {busqueda_binaria(l, v3)}")"""
+print(fEl valor {v1} esta en la posicion {busqueda_binaria(l, v1)})
+print(fEl valor {v2} esta en la posicion {busqueda_binaria(l, v2)})
+print(fEl valor {v3} esta en la posicion {busqueda_binaria(l, v3)})
 
 #Serie fibonacci
 
-"""def fibonacci(n):
+def fibonacci(n):
   
   if n == 0:
     return n
@@ -154,9 +154,9 @@ print(f"El valor {v3} esta en la posicion {busqueda_binaria(l, v3)}")"""
   
   return fibonacci(n-1) + fibonacci(n-2)
 
-print(fibonacci(50))"""
+print(fibonacci(50))
 
-"""def good_fibonacci(n:int)->int:
+def good_fibonacci(n:int)->int:
   
   if n <= 1:
     return (n,0)
@@ -164,5 +164,5 @@ print(fibonacci(50))"""
     (a,b) = good_fibonacci(n-1)
     return (a+b, a)
 
-print(good_fibonacci(50))"""
+print(good_fibonacci(50))
 

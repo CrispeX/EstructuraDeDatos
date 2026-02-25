@@ -1,0 +1,3 @@
+Una lista enlazada es una estructura de datos lineal y dinámica, compuesta por nodos secuenciales. Cada nodo contiene datos y un puntero (referencia) 
+al siguiente nodo, permitiendo una asignación de memoria no contigua. Son eficientes para inserciones/eliminaciones rápidas ( al principio) 
+al no requerir desplazamiento de elementos, a diferencia de los arrays.
