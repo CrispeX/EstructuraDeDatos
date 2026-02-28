@@ -1,0 +1,46 @@
+Eres el desarrollador de un sistema que analiza cadenas de ADN, las secuencias están almacenadas en una lista simple. Cada secuencia tiene:
+•
+ID
+•
+Nombre de muestra
+•
+Secuencia (string, ejemplo "ATGCGTA")
+•
+Nivel de riesgo (entero)
+Operaciones a implementar
+Todas las operaciones deben implementarse únicamente con recursión:
+1. Permitir registrar nuevas secuencias de ADN.
+Se debe permitir registrar (en la lista) nuevas secuencias de ADN.
+2. Contar ocurrencias de un patrón dentro de la secuencia
+Dado un patrón encontrar dentro de cada secuencia cuantas veces ocurre dicho patrón:
+Patrón: "AT" Secuencia: "ATGATAT"
+Resultado 3, Realizar esto para cada una de las secuencias.
+3.
+Calcular el nivel de riesgo promedio
+Debe hacerse con recursión de cola obligatoria. Debe retornar el nivel de riesgo promedio de todas las cadenas de ADN registradas.
+4. Encontrar la secuencia más larga
+La función debe retornar la secuencia de ADN más larga.
+5. Generar todas las subcadenas posibles de una secuencia
+Def: Una subcadena es un fragmento contiguo del string, no son combinaciones arbitrarias.
+•
+Generar recursivamente subcadenas
+•
+Sin usar ciclos
+•
+Construir nueva lista
+Ejemplo: Para la secuencia "ABC", Las subcadenas posibles son (en total 6):
+"A" "AB" "ABC" "B" "BC" "C"
+Siguiendo el mismo ejemplo, en "ABC":
+"AB" es válida "AC" NO es válida (porque no es contigua)
+6.
+Determinar si una secuencia contiene más nucleótidos "A" que "T"
+Restricciones: --> SIN acumuladores globales. --> Debe resolverse en el retorno.
+7. Simulación de mutación genética
+Dada una secuencia, generar una nueva secuencia donde:
+•
+Cada "A" se convierte en "T"
+•
+Cada "T" se convierte en "A"
+•
+"C" y "G" permanecen igual
+Pero debe construirse desde el retorno.
