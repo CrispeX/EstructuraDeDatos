@@ -1,205 +1,240 @@
 # Aqui se encontrara la estructura de las listas doblemente enlazadas, con sus respectivas funciones para agregar, eliminar, buscar, etc.
-class Node:
-    def __init__(self, data):
-        self.__data = data
-        self.__next = None
-        self.__prev = None
+import random
 
-    @property
-    def data(self):
-        return self.__data
-    
-    @property
-    def next(self):
-        return self.__next
-    
-    @next.setter
-    def next(self, new_next):
-        if new_next is not None and not isinstance(new_next, Node):
-            raise TypeError("El siguiente Valor debe ser un objeto de tipo Node o None.")
-        self.__next = new_next
+class NodeD:
+  __slots__ = ('__value','__next','__prev')
 
-    @property
-    def prev(self):
-        return self.__prev
-    
-    @prev.setter
-    def prev(self, new_prev):
-        if new_prev is not None and not isinstance(new_prev, Node):
-            raise TypeError("El anterior Valor debe ser un objeto de tipo Node o None.")
-        self.__prev = new_prev
+  def __init__(self,value):
+    self.__value = value
+    self.__next = None
+    self.__prev = None
 
-    @data.setter
-    def data(self, new_data):
-        if new_data is None:
-            raise TypeError("El valor de data debe ser un número o una cadena.")
-        self.__data = new_data
+  def __str__(self):
+    return str(self.__value)
 
-class DoubleLinkedList:
+  @property
+  def next(self):
+    return self.__next
 
-    __slots__=['__head', '__size', '__tail']
-    def __init__(self):
-        self.__head=None
-        self.__size=0
-        self.__tail=None
+  @next.setter
+  def next(self,node):
+    if node is not None and not isinstance(node,NodeD):
+      raise TypeError("next debe ser un objeto tipo nodo ó None")
+    self.__next = node
 
-    @property
-    def head(self):
-        return self.__head
-    
-    @property
-    def size(self): 
-        return self.__size
-    
-    @property
-    def tail(self):
-        return self.__tail
-    
-    @head.setter
-    def head(self, new_head):
-        if new_head is not None and not isinstance(new_head, Node):
-            raise TypeError("El valor de head debe ser un objeto de tipo Node o None.")
-        self.__head = new_head
+  @property
+  def prev(self):
+    return self.__prev
 
-    @tail.setter
-    def tail(self, new_tail):
-        if new_tail is not None and not isinstance(new_tail, Node):
-            raise TypeError("El valor de tail debe ser un objeto de tipo Node o None.")
-        self.__tail = new_tail
+  @prev.setter
+  def prev(self,node):
+    if node is not None and not isinstance(node,NodeD):
+      raise TypeError("next debe ser un objeto tipo nodo ó None")
+    self.__prev = node
 
-    def __iter__(self):
-        current_node=self.__head
-        while current_node is not None:
-            yield current_node.data
-            current_node=current_node.next
 
-    def __str__(self):
-        result = [str(node) for node in self]
-        return " <---> ".join(result)
-    
-    def prepend(self, new_data):
-        new_node = Node(new_data)
-        if self.__head is None: 
-            self.__head = new_node
-            self.__tail = new_node
-        else:
-            new_node.next = self.__head
-            self.__head.prev = new_node
-            self.__head = new_node
-        self.__size += 1
+  @property
+  def value(self):
+    return self.__value
 
-    def append(self, new_data):
-        new_node=Node(new_data)
-        if self.__tail is None:
-            self.__head=new_node
-            self.__tail=new_node
-        else:
-            self.__tail.next=new_node
-            new_node.prev = self.__tail
-            self.__tail=new_node
-        self.__size += 1
+  @value.setter
+  def value(self,newValue):
+    if newValue is None:
+      raise TypeError("el nuevo valor debe ser diferente de None")
+    self.__value = newValue
 
-    def get_by_index(self, index):
-        if index < -1 or index > self.__size - 1:
-            raise ValueError("Índice fuera de rango.")
-        
-        if index == -1:
-            return self.__tail
-        
-        current_index = 0
-        current_node = self.__head
 
-        while current_node is not None:
-            if index == current_index:
-                return current_node
-            
-            current_index += 1
-            current_node = current_node.next
+class DoublyLinkedList:
 
-    def insert_at_index(self,index, new_data):
-        if index < -1 or index > self.__size - 1:
-            raise ValueError("Índice fuera de rango.")
-        
-        if index == 0:
-            self.prepend(new_data)
-            
-        elif index == -1 or index == self.__size:
-            self.append(new_data)
+  def __init__(self):
+    self.__head = None
+    self.__tail = None
+    self.__size = 0
 
-        else:
-            new_node = Node(new_data)
-            prev_node = self.get_by_index(index - 1)
-            next_node = prev_node.next
-            new_node.next = next_node
-            new_node.prev = prev_node
-            prev_node.next = new_node
-            if next_node:
-                next_node.prev = new_node
-            self.__size += 1
-        
-    def search_value(self, value):
-        for current_node in self:
-            if current_node == value:
-                return True
-        return False
+  @property
+  def head(self):
+    return self.__head
 
-    #def set_new_value(self, new_data):
+  @head.setter
+  def head(self,node):
+    if node is not None and not isinstance(node,NodeD):
+      raise TypeError("next debe ser un objeto tipo nodo ó None")
+    self.__head = node
 
-    def remove_first(self):
-        if self.__head is None:
-            print("La lista está vacía.")
-            return None
-        
-        if self.__size == 1:
-            removed_node = self.__head
-            self.__head = None
-            self.__tail = None
-            self.__size -= 1
-            return removed_node
-        
-        else:
-            removed_node = self.__head
-            self.__head = self.__head.next
-            self.__head.prev = None
-            self.__size -= 1
-            removed_node.next = None
-            return removed_node
-        
-    def remove_last(self):
-        if self.head is None:
-            print("La lista está vacía.")
-            return None
-        if self.__size == 1:
-            removed_node = self.__head
-            self.__head = None
-            self.__tail = None
-            self.__size -= 1
-            return removed_node
-        else:
-            removed_node = self.__tail
-            self.__tail = self.__tail.prev
-            self.__tail.next = None
-            self.__size -= 1
-            removed_node.prev = None
-            return removed_node
-        
-    def clear(self):
-        self.__head = None
-        self.__tail = None
-        self.__size = 0
+  @property
+  def tail(self):
+    return self.__tail
 
-if __name__ == "__main__":
-    dll = DoubleLinkedList()
-    dll.append(1)
-    dll.append(2)
-    dll.append(3)
-    print("Lista después de append:", dll)
-    dll.prepend(0)
-    print("Lista después de prepend:", dll)
-    dll.insert_at_index(2, 1.5)
-    print("Lista después de insertar en índice 2:", dll)
-    dll.remove_first()
-    print("Lista después de remove_first:", dll)
-    dll.remove_last()
-    print("Lista después de remove_last:", dll)
-    print("Tamaño:", dll.size)
+  @tail.setter
+  def tail(self,node):
+    if node is not None and not isinstance(node,NodeD):
+      raise TypeError("next debe ser un objeto tipo nodo ó None")
+    self.__tail = node
+
+  @property
+  def size(self):
+    return self.__size
+
+
+  @size.setter
+  def size(self,new_size):
+    if not isinstance(new_size,int):
+      raise TypeError("size debe ser un numero entero")
+    self.__size = new_size
+
+  def __str__(self):
+    result = [str(nodo.value) for nodo in self]
+    return ' <--> '.join(result)
+
+  def print(self):
+    for nodo in self:
+      print(str(nodo.value))
+
+  def __iter__(self):
+    current = self.__head
+    while current is not None:
+      yield current
+      current = current.next
+
+  def prepend(self, value):
+
+    newnode = NodeD(value)
+    if self.__head is None:
+      self.__head = newnode
+      self.__tail = newnode
+    else:
+      newnode.next = self.__head #enlazo nuevo nodo
+      self.__head.prev = newnode
+      self.__head = newnode
+    self.__size += 1
+
+  def append(self,value):
+    newnode = NodeD(value)
+    if self.__head is None:
+      self.__head = newnode
+      self.__tail = newnode
+    else:
+      self.__tail.next = newnode #enlazo nuevo nodo
+      newnode.prev = self.__tail
+      self.__tail = newnode
+
+    self.__size += 1
+
+  def getbyindex(self, index):
+    if index < 0 or index > self.__size:
+      return "Error, indice fuera de rango"
+
+    cont = 0
+    for currentNode in self:
+      if cont == index:
+        return currentNode
+      cont += 1
+
+  def insertinindex(self, value, index):
+
+    if index == 0:
+      self.prepend(value)
+    elif index == -1 or index == self.__size:
+      self.append(value)
+    else:
+      prevNode = self.getbyindex(index-1)
+      nextNode = prevNode.next
+      newNode = NodeD(value)
+      newNode.next = prevNode.next #Enlazo el next del nuevo nodo, que es el next del previo
+      newNode.prev = prevNode # previo del nodo nuevo
+      nextNode.prev = newNode # previo del nodo next antes de la inserción
+      prevNode.next = newNode
+      self.__size +=1
+
+  def searchbyvalue(self, valuetosearch):
+    for currentNode in self:
+      if currentNode.value == valuetosearch:
+        return True
+
+    return False
+
+  def setnewvalue(self, valuetochange, newvalue):
+    for currentNode in self:
+      if currentNode.value == valuetochange:
+        currentNode.value = newvalue
+        return True
+
+    return False
+
+  def popfirst(self):
+    tempNode = self.__head
+    if self.__head is None:
+      return "Lista vacia, no hay elementos a eliminar"
+    elif self.__size == 1:
+      self.__head = None
+      self.__tail = None
+      self.__size = 0
+    else:
+      self.__head = self.__head.next
+      self.__head.prev = None
+
+      self.__size -= 1
+
+    tempNode.next = None  #limpiar la referencia al segundo nodo, ahora nueva cabeza
+    return tempNode
+
+
+  def pop(self):
+    tempNode = self.__tail
+    if self.__head is None:
+      return "Lista vacia, no hay elementos a eliminar"
+    elif self.__size == 1:
+      self.__head = None
+      self.__tail = None
+      self.__size = 0
+    else:
+      self.__tail = self.__tail.prev
+      self.__tail.next = None
+
+      self.__size -= 1
+
+    tempNode.prev = None  #limpiar la referencia al penultimo nodo, ahora nueva cola
+    return tempNode
+
+
+  def generate(self, num, min, max):
+    for _ in range(num):
+      self.append(random.randint(min,max))
+
+customDLL = DoublyLinkedList()
+customDLL.prepend(10)
+customDLL.prepend(50)
+
+print("customDLL :",customDLL)
+print("customDLL.tail :",customDLL.tail)
+print("customDLL.head :",customDLL.head)
+
+print("customDLL.tail.prev", customDLL.tail.prev)
+print("customDLL.head.prev :",customDLL.head.prev)
+
+print("Despues de append")
+customDLL.append(70)
+customDLL.append(90)
+
+print("customDLL :",customDLL)
+print("customDLL.tail :",customDLL.tail)
+print("customDLL.head :",customDLL.head)
+
+print("customDLL.tail.prev", customDLL.tail.prev)
+print("customDLL.head.prev :",customDLL.head.prev)
+
+
+#customDLL.insertinindex(85,2)
+#print("customDLL :",customDLL)
+
+customDLL.insertinindex(65,3)
+print("customDLL :",customDLL)
+print("customDLL.tail.prev", customDLL.tail.prev)
+print("customDLL.head.prev :",customDLL.head.prev)
+
+
+print("customDLL.pop()",customDLL.pop())
+print("customDLL :",customDLL)
+print("customDLL.tail", customDLL.tail)
+print("customDLL.tail.prev", customDLL.tail.prev)
+print("customDLL.head.prev :",customDLL.head.prev)
