@@ -14,7 +14,7 @@ def fix_estring_mayusculas_minusculas(q1):
     aux = Queue()
     index = 0
 
-    while index < q1.len()-2:
+    while index < q1.len()-1:
         
         if q1[index] != q1[index+1]: #Caso letras adyacentes diferentes
             if q1[index].lower() == q1[index+1] or q1[index] == q1[index+1].lower(): #Caso letras adyacentes iguales pero una mayuscula y otra minuscula
