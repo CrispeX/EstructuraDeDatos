@@ -2,168 +2,196 @@
 import random
 
 class Node:
-  __slots__ = ('__value','__next')
+    __slots__ = ('__value', '__next')
 
-  def __init__(self,value):
-    self.__value = value
-    self.__next = None
+    def __init__(self, value):
+        self.__value = value
+        self.__next = None
 
-  def __str__(self):
-    return str(self.__value)
+    def __str__(self):
+        return str(self.__value)
 
-  @property
-  def next(self):
-    return self.__next
+    @property
+    def next(self):
+        return self.__next
 
-  @next.setter
-  def next(self,node):
-    if node is not None and not isinstance(node,Node):
-      raise TypeError("next debe ser un objeto tipo nodo ó None")
-    self.__next = node
+    @next.setter
+    def next(self, node):
+        if node is not None and not isinstance(node, Node):
+            raise TypeError("next debe ser un objeto tipo nodo ó None")
+        self.__next = node
 
-  @property
-  def value(self):
-    return self.__value
+    @property
+    def value(self):
+        return self.__value
 
-  @value.setter
-  def value(self,newValue):
-    if newValue is None:
-      raise TypeError("el nuevo valor debe ser diferente de None")
-    self.__value = newValue
+    @value.setter
+    def value(self, newValue):
+        if newValue is None:
+            raise TypeError("el nuevo valor debe ser diferente de None")
+        self.__value = newValue
+
 
 class LinkedList:
 
-  def __init__(self):
-    self.__head = None
-    self.__tail = None
-    self.__size = 0
+    def __init__(self):
+        self.__head = None
+        self.__tail = None
+        self.__size = 0
 
-  @property
-  def head(self):
-    return self.__head
+    @property
+    def head(self):
+        return self.__head
 
-  @property
-  def tail(self):
-    return self.__tail
+    @property
+    def tail(self):
+        return self.__tail
 
-  @property
-  def size(self):
-    return self.__size
+    @property
+    def size(self):
+        return self.__size
 
-  @head.setter
-  def head(self,node):
-    if node is not None and not isinstance(node,Node):
-      raise TypeError("Head debe ser un objeto tipo nodo ó None")
-    self.__head = node
+    @head.setter
+    def head(self, node):
+        if node is not None and not isinstance(node, Node):
+            raise TypeError("Head debe ser un objeto tipo nodo ó None")
+        self.__head = node
 
-  @tail.setter
-  def tail(self,node):
-    if node is not None and not isinstance(node,Node):
-      raise TypeError("Tail debe ser un objeto tipo nodo ó None")
-    self.__tail = node
+    @tail.setter
+    def tail(self, node):
+        if node is not None and not isinstance(node, Node):
+            raise TypeError("Tail debe ser un objeto tipo nodo ó None")
+        self.__tail = node
 
-  @size.setter
-  def size(self,num):
-    self.__size = num
+    @size.setter
+    def size(self, num):
+        self.__size = num
 
-  def __str__(self):
-    result = [str(nodo.value) for nodo in self]
-    return ' <--> '.join(result)
+    def __str__(self):
+        result = [str(nodo.value) for nodo in self]
+        return ' <--> '.join(result)
 
-  def print(self):
-    for nodo in self:
-      print(str(nodo.value))
+    def print(self):
+        for nodo in self:
+            print(str(nodo.value))
 
-  def __iter__(self):
-    current = self.__head
-    while current is not None:
-      yield current
-      current = current.next
+    def __iter__(self):
+        current = self.__head
+        while current is not None:
+            yield current
+            current = current.next
 
-  def append(self,value): # Adicionar al final
-    newnode = Node(value)
-    if self.__head is None:
-      self.__head = newnode
-      self.__tail = newnode
-    else:
-      self.__tail.next = newnode #enlazo nuevo nodo
-      self.__tail = newnode
-    self.__size += 1
+    def append(self, value):  # Adicionar al final
+        newnode = Node(value)
+        if self.__head is None:
+            self.__head = newnode
+            self.__tail = newnode
+        else:
+            self.__tail.next = newnode  # enlazo nuevo nodo
+            self.__tail = newnode
+        self.__size += 1
 
+    def popfirst(self):
+        tempNode = self.__head
+        if self.__head is None:
+            return False
+        elif self.__size == 1:
+            self.__head = None
+            self.__tail = None
+            self.__size = 0
+        else:
+            self.__head = self.__head.next
+            self.__size -= 1
 
-  def popfirst(self):
-    tempNode = self.__head
-    if self.__head is None:
-      return False
-    elif self.__size == 1:
-      self.__head = None
-      self.__tail = None
-      self.__size = 0
-    else:
-      self.__head = self.__head.next
-      self.__size -= 1
+        tempNode.next = None  # limpiar la referencia al segundo nodo, ahora nueva cabeza
+        return tempNode
 
-    tempNode.next = None  #limpiar la referencia al segundo nodo, ahora nueva cabeza
-    return tempNode
+    def pop(self):
+        if self.__head is None:
+            print("No hay elementos en la lista")
+            return None
+        elif self.__size == 1:
+            popped_node = self.__head
+            self.__head = None
+            self.__tail = None
+            self.__size = 0
+            return popped_node
+        else:
+            # print("self.__tail",self.__tail)
+            popped_node = self.__tail
+            # obtener el penultimo
+            # 1ra forma new_tail = self.get_by_index(customll.size-2)
 
-class ColaNodo:
-  __slots__ = ('dato','next')
-
-  def __init__(self, dato):
-    self.dato = dato
-    self.next = None
+            # 2da forma
+            current_node = self.__head
+            for _ in range(self.__size - 2):
+                current_node = current_node.next
+            current_node.next = None
+            self.__tail = current_node
+            self.__size -= 1
+            return popped_node
 
 
 class Queue:
 
-  def __init__(self):
-    self.head = None
-    self.tail = None
-    self._size = 0
+    def __init__(self):
+        self.__q = LinkedList()
 
-  def encolar(self, elemento):
-    nodo = ColaNodo(elemento)
-    if self.tail is None: 
-      self.head = nodo
-      self.tail = nodo
-    else:
-      self.tail.next = nodo
-      self.tail = nodo
-    self._size += 1
+    def enqueue(self, e):
+        self.__q.append(e)
+        return True
 
-  def desencolar(self):
-    if self.head is None:
-      return None
-    nodo = self.head
-    self.head = nodo.next
-    if self.head is None:
-      self.tail = None
-    self._size -= 1
-    return nodo.dato
+    def dequeue(self):
+        if self.is_empty():
+            return "No hay elementos en la cola"
 
-  def esta_vacia(self):
-    return self._size == 0
+        temp_node = self.__q.popfirst()
+        return temp_node.value
 
-  def tamano(self):
-    return self._size
+    def is_empty(self):
+        return self.__q.size == 0
 
-  
-  def enqueue(self, e):
-    return self.encolar(e)
+    def len(self):
+        return self.__q.size
 
-  def dequeue(self):
-    return self.desencolar()
+    def firs(self):
+        if self.is_empty():
+            return "No hay elementos en la cola"
 
-  def is_empty(self):
-    return self.esta_vacia()
+        return self.__queue.head.value
 
-  def len(self):
-    return self.tamano()
+    def __str__(self):
+        result = [str(nodo.value) for nodo in self.__q]
+        return ' -- '.join(result)
 
-  def __str__(self):
-    result = []
-    current = self.head
-    while current is not None:
-      result.append(str(current.dato))
-      current = current.next
-    return ' -- '.join(result)
+
+class Stack:
+
+    def __init__(self):
+        self.__s = LinkedList()
+
+    def push(self, e):
+        self.__s.append(e)
+        return True
+
+    def pop(self):
+        if self.is_empty():
+            return "No hay elementos en la pila"
+        temp_node = self.__s.pop()
+        return temp_node.value
+
+    def is_empty(self):
+        return self.__s.size == 0
+
+    def len(self):
+        return self.__s.size
+
+    def top(self):
+        if self.is_empty():
+            return "No hay elementos en la pila"
+
+        return self.__s.tail.value
+
+    def __str__(self):
+        result = [str(nodo.value) for nodo in self.__s]
+        return ' | '.join(result)
